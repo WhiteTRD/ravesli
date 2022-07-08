@@ -1,46 +1,41 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-class Employe
+class Diary
 {
 private:
-    int m_id = 0;
-    std::string m_name = "Anonim";
-    int m_years = 0;
-    
+    std::string m_name;
+    std::vector<int> m_grades;
+
 public:
-    Employe() { innit(); }
-    Employe(const std::string &name, int years) : m_name(name), m_years(years) { innit(); }
-
-    void innit() 
-    {   
-        m_id + 1;
-        std::cout << "Employe created." << std::endl;
-        print(); 
-    }
-
-    int getId() { return m_id; } 
-
-    void setName(const std::string &name) { m_name = name; }
-    std::string getName() { return m_name; }
-
-    void setYears(int years) { m_years = years; }
-    int getYears() { return m_years; }
-
-    void print()
+    Diary(std::string name) : m_name(name) {};
+    Diary& addGrade(int grade) {m_grades.push_back(grade); return *this;}
+    double getAverageScore()
     {
-        std::cout << "ID: " << m_id << "\n"
-                  << "Name: " << m_name << "\n"
-                  << "Years: " << m_years << "\n" << std::endl;
+        double averageScore;
+        for (const auto &grade : m_grades)
+            averageScore += grade;
+        averageScore /= m_grades.size();
+        return averageScore;	    
     }
 
+    void printDiary()
+    {
+        std::cout << "Name: " << m_name << '\n' << "grades: ";
+        
+        for (const auto &grade : m_grades)
+            std::cout << grade << ' ';
+        
+        std::cout << '\n' << "average grade: " << getAverageScore();
+    }
 };
 
 int main()
 {
-    Employe Vania("Vania", 22);
-    Employe Vlad("Vlad", 8);
-    Employe Arsen("Arsen", 6);
+    Diary diaryVlad = {"Vlad"};
+    diaryVlad.addGrade(10).addGrade(8).addGrade(7).addGrade(5);
+    diaryVlad.printDiary();
 
     return 0;
 }
