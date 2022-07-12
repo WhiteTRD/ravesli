@@ -1,4 +1,5 @@
 #include "Date.h"
+#include <iostream>
  
 // Конструктор класса Date
 Date::Date(int day, int month, int year)

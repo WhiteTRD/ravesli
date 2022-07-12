@@ -1,6 +1,8 @@
 #ifndef DATE_H
 #define DATE_H
- 
+
+#include <iostream>
+
 class Date
 {
 private:
@@ -13,9 +15,9 @@ public:
  
     void SetDate(int day, int month, int year);
  
-    int getDay() { return m_day; }
-    int getMonth() { return m_month; }
-    int getYear()  { return m_year; }
+    int getDay() const { return m_day; }
+    int getMonth() const { return m_month; }
+    int getYear() const { return m_year; }
 };
  
 #endif
